@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Auxiliary';
 import Burger from './../../components/Burger/Burger';
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 
 class BurgerBuilder extends Component{
     state= {
@@ -13,11 +14,27 @@ class BurgerBuilder extends Component{
     }
 
 
+    moreHandler = () =>{
+        this.setState((prevState, props)=>{
+            return{
+                
+            }
+        })
+    }
+
+    lessHandler=()=>{
+        this.setState((prevState, props)=>{
+            return{
+
+            }
+        })
+    }
+
     render(){
         return(
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <div> Burger Controls</div>
+                <BuildControls Less={this.lessHandler} More={this.moreHandler}/>
             </Aux>
 
         );
