@@ -17,10 +17,9 @@ return(
 
 return <BuildControl 
 label={ctrl.label} 
-type={ctrl.type}
 key={ctrl.label} 
-Less={props.Less}
-More={props.More}
+Less={()=>props.Less(ctrl.type)}
+More={()=>props.More(ctrl.type)}
 />
 
 })}
