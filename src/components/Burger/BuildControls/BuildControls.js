@@ -12,7 +12,10 @@ const ingredients = [
 
 const buildControls = (props) => {
 return(
+
+
 <div className={classes.BuildControls}>
+<p>Total Price: <strong>{props.totalPrice.toFixed(2)}</strong></p>
 {ingredients.map(ctrl=> {
 
 return <BuildControl 
