@@ -38,6 +38,11 @@ class BurgerBuilder extends Component{
     }
 
     lessHandler=(type)=>{
+        let oldCount = this.state.ingredients[type];
+        // If the old count is less than or equal to 0, nothing happens
+        if(oldCount <= 0){
+            return;
+        }
         let newIngredients = {...this.state.ingredients};
         newIngredients[type] = this.state.ingredients[type] -1;
 
@@ -47,12 +52,19 @@ class BurgerBuilder extends Component{
         )
     }
 
+    
     render(){
+        const disabledInfo = {...this.state.ingredients};
+
+        for(let key in disabledInfo){
+            disabledInfo[key] = disabledInfo[key] <= 0;
+        }
+
         return(
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
                 Total Price: {this.state.totalPrice}
-                <BuildControls Less={this.lessHandler} More={this.moreHandler}/>
+                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo}/>
             </Aux>
 
         );

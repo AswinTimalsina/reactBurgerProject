@@ -20,6 +20,7 @@ label={ctrl.label}
 key={ctrl.label} 
 Less={()=>props.Less(ctrl.type)}
 More={()=>props.More(ctrl.type)}
+disabled={props.disabled[ctrl.type]}
 />
 
 })}
