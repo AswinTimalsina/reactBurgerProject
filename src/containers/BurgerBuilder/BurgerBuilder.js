@@ -20,9 +20,19 @@ class BurgerBuilder extends Component{
             meat: 0,
             bacon:0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        orderSum: false
     }
 
+    orderButtonHandler = (ingreCopy) =>{    
+        let sum = Object.keys(ingreCopy).map(ingKey =>{
+            return ingreCopy[ingKey];
+        }).reduce((init, el)=>{
+            return init+el;
+        },0)
+
+        this.setState({orderSum: sum<=0})
+    }
 
     moreHandler = (type) =>{
         const updatedIngredients = {...this.state.ingredients};
@@ -35,6 +45,7 @@ class BurgerBuilder extends Component{
             totalPrice:newPrice
             }
         )
+        this.orderButtonHandler(updatedIngredients);
     }
 
     lessHandler=(type)=>{
@@ -50,6 +61,7 @@ class BurgerBuilder extends Component{
         this.setState(
             {ingredients: newIngredients, totalPrice: newPrice}
         )
+        this.orderButtonHandler(newIngredients);
     }
 
     
@@ -60,14 +72,13 @@ class BurgerBuilder extends Component{
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
 
-        let disableButton = this.state.totalPrice <= 4;
+        
 
         return(
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
              
-                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={disableButton}/>
-                <p>Hello:{disableButton.toString()}</p>
+                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={this.state.orderSum}/>
             </Aux>
 
         );
