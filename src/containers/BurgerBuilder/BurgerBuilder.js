@@ -60,10 +60,14 @@ class BurgerBuilder extends Component{
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
 
+        let disableButton = this.state.totalPrice <= 4;
+
         return(
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice}/>
+             
+                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={disableButton}/>
+                <p>Hello:{disableButton.toString()}</p>
             </Aux>
 
         );

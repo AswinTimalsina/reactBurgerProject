@@ -27,6 +27,8 @@ disabled={props.disabled[ctrl.type]}
 />
 
 })}
+
+<button className={classes.OrderButton} disabled={props.orderButton}>ORDER NOW</button>
 </div>
 )
 }
