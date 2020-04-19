@@ -21,10 +21,11 @@ class BurgerBuilder extends Component{
             bacon:0
         },
         totalPrice: 4,
-        orderSum: false
+        orderSum: true  
     }
 
-    orderButtonHandler = (ingreCopy) =>{    
+    orderButtonHandler = (ingreCopy) =>{   
+        // let ingreCopy = {...this.state.ingredients}; 
         let sum = Object.keys(ingreCopy).map(ingKey =>{
             return ingreCopy[ingKey];
         }).reduce((init, el)=>{
@@ -72,7 +73,6 @@ class BurgerBuilder extends Component{
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
 
-        
 
         return(
             <Aux>
