@@ -23,7 +23,8 @@ class BurgerBuilder extends Component{
             cheese:0
         },
         totalPrice: 4,
-        orderSum: true  
+        orderSum: true,
+        modalShow: false  
     }
 
     orderButtonHandler = (ingreCopy) =>{   
@@ -67,6 +68,10 @@ class BurgerBuilder extends Component{
         this.orderButtonHandler(newIngredients);
     }
 
+    modalHandler =()=>{
+        this.setState({modalShow: true})
+    }
+
     
     render(){
         const disabledInfo = {...this.state.ingredients};
@@ -78,10 +83,10 @@ class BurgerBuilder extends Component{
 
         return(
             <Aux>
-                <Modal ><OrderSummary ingredients={this.state.ingredients}/></Modal>
+                <Modal modalShow={this.state.modalShow}><OrderSummary ingredients={this.state.ingredients}/></Modal>
                 <Burger ingredients={this.state.ingredients}/>
              
-                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={this.state.orderSum}/>
+                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={this.state.orderSum} modalShow={this.modalHandler}/>
             </Aux>
 
         );
