@@ -68,10 +68,13 @@ class BurgerBuilder extends Component{
         this.orderButtonHandler(newIngredients);
     }
 
-    modalHandler =()=>{
+    showModalHandler =()=>{
         this.setState({modalShow: true})
     }
 
+    removeModalHandler =() =>{
+        this.setState({modalShow: false})
+    }
     
     render(){
         const disabledInfo = {...this.state.ingredients};
@@ -83,10 +86,10 @@ class BurgerBuilder extends Component{
 
         return(
             <Aux>
-                <Modal modalShow={this.state.modalShow}><OrderSummary ingredients={this.state.ingredients}/></Modal>
+                <Modal modalShow={this.state.modalShow} removeBackdrop={this.removeModalHandler}><OrderSummary ingredients={this.state.ingredients} /></Modal>
                 <Burger ingredients={this.state.ingredients}/>
              
-                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={this.state.orderSum} modalShow={this.modalHandler}/>
+                <BuildControls Less={this.lessHandler} More={this.moreHandler} disabled={disabledInfo} totalPrice={this.state.totalPrice} orderButton={this.state.orderSum} modalShow={this.showModalHandler}/>
             </Aux>
 
         );
