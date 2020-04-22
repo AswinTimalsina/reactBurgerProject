@@ -11,6 +11,7 @@ return(
 <ul>
 {summary}
 </ul>
+<p><strong>Total Price: {props.total.toFixed(2)}</strong></p>
 <p>Continue to Checkout?</p>
 
 <Button btnType="Danger" clicked={props.cancelPurchaseHandler}>Cancel</Button>
