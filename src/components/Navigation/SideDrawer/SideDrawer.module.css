@@ -13,7 +13,7 @@
 }
 
 
-@media (min-width: 600px){
+@media (min-width: 500px){
     .SideDrawer{
         display: none;
     }
@@ -29,4 +29,6 @@
 
 .logo{
     height: 11%;
+    margin-bottom: 32px;
 }
+

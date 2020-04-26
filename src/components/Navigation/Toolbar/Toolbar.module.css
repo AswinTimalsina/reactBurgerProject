@@ -18,3 +18,10 @@
 .Toolbar nav{
     height: 100%
 }
+
+/* we are in mobile device */
+@media (max-width: 499px){
+    .DesktopOnly{
+        display: none;
+    }
+}
