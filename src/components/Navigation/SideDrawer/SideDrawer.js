@@ -6,23 +6,20 @@ import Backdrop from '../../UI/Backdrop/Backdrop';
 import Aux from '../../../hoc/Auxiliary';
 
 class SideDrawer extends Component{
-    state={
-        backdropShow: true
-    }
-
-    backdropHandler=()=>{
-        this.setState({backdropShow: false})
-    }
+    
 
     render(){
         let attachedClasses = [classes.SideDrawer, classes.Close];
 
-        if(this.state.backdropShow){
-            attachedClasses = [classes.SideDrawer, classes.Open]
+        if(this.props.backdropShow){
+            attachedClasses = [classes.SideDrawer, classes.Open];
+        }
+        else{
+            attachedClasses = [classes.SideDrawer, classes.Close];
         }
     return(
         <Aux>
-            <Backdrop removeBackdrop={this.backdropHandler} show={this.state.backdropShow} />
+            <Backdrop removeBackdrop={this.props.backdropHandler} show={this.props.backdropShow}/>
             <div className={attachedClasses.join(' ')}>
             <div className={classes.logo}>
                 <Logo />
@@ -30,6 +27,7 @@ class SideDrawer extends Component{
             <nav>
             <NavigationItems />
             </nav>
+            
         </div>
         </Aux>
     ) 
