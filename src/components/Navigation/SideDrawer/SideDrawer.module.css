@@ -32,3 +32,9 @@
     margin-bottom: 32px;
 }
 
+/* Backdrop */
+@media (min-width: 500px){
+    .Backdrop{
+        display: none;
+    }
+}
