@@ -12,7 +12,7 @@
     transition: transform 0.3s ease-out;
 }
 
-
+/* in desktop version not showing sideDrawer */
 @media (min-width: 500px){
     .SideDrawer{
         display: none;
@@ -37,4 +37,7 @@
     .Backdrop{
         display: none;
     }
+
+   
+    
 }

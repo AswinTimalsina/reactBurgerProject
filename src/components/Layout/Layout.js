@@ -8,7 +8,7 @@ import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
 class Layout extends Component {
     state={
-        backdropShow: true
+        backdropShow: false
     }
 
     backdropHandler=()=>{

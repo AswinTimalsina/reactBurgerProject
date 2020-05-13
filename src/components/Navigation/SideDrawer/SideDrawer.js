@@ -19,7 +19,7 @@ class SideDrawer extends Component{
         }
     return(
         <Aux>
-            <Backdrop removeBackdrop={this.props.backdropHandler} show={this.props.backdropShow} className={classes.Backdrop}/>
+            <Backdrop removeBackdrop={this.props.backdropHandler} show={this.props.backdropShow} />
             <div className={attachedClasses.join(' ')}>
             <div className={classes.logo}>
                 <Logo />
