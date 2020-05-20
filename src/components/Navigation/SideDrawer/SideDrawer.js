@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Logo from '../../Image/Image'
 import Backdrop from '../../UI/Backdrop/Backdrop';
-import Aux from '../../../hoc/Auxiliary';
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
 
 class SideDrawer extends Component{
     

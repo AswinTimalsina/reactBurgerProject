@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import classes from './Modal.module.css';
-import Aux from '../../../hoc/Auxiliary';
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
 import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component{
     // updating the modal along with the props.children if the modal is shown
     shouldComponentUpdate(nextProps, nextState){
-        return this.props.modalShow !== nextProps.modalShow;
+        return this.props.modalShow !== nextProps.modalShow || this.props.children !== nextProps.children;
     }
 
     componentWillUpdate(){
