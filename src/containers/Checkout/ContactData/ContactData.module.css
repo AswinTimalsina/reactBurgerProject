@@ -1,0 +1,32 @@
+.form input{
+    width: 80%;
+    margin: auto;
+    font: inherit;
+    box-sizing: border-box;
+    outline: none;
+    margin-top: 10px;
+    
+}
+
+.form{
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    align-items: center;
+}
+
+.form button{
+    margin: 25px 10px;
+    padding: 10px;
+    width : 90px;
+    color: #fa923f;
+    cursor: pointer;
+    border: 1px solid #fa923f;
+    background: transparent;
+}
+
+
