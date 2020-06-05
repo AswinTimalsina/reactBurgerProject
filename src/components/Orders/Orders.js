@@ -20,6 +20,7 @@ componentDidMount(){
             })
         }
         this.setState({orders:orderData, loading:false})
+        console.log(this.state.orders)
     }).catch(err=>{
         console.log(err);
         this.setState({loading: false})
@@ -27,11 +28,16 @@ componentDidMount(){
 }
 
     render(){
-        
         return(
             <div>
-            <Order />
-            <Order />
+            {this.state.orders.map(order=>(
+                <Order 
+                key={order.id}
+                ingredients={order.ingredients} 
+                price={order.price}
+                />
+            )
+           )}
             </div>
 
         )
