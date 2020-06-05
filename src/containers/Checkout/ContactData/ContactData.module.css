@@ -20,7 +20,9 @@
 }
 
 .form button{
-    margin: 25px 10px;
+    
+    display: block;
+    margin:20px auto;
     padding: 10px;
     width : 90px;
     color: #fa923f;
