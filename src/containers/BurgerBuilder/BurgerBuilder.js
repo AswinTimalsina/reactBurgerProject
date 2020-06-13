@@ -14,14 +14,13 @@ const INGREDIENT_PRICES = {
     meat: 1.3,
     bacon: 0.7
 }
-
-
-
 class BurgerBuilder extends Component{
     state= {
         ingredients: null,
         totalPrice: 4,
-        orderSum: true,
+
+        //local UI State
+        orderSum: true,     //this is for the ui of the button, the animation after order>0
         modalShow: false,
         loading: false,
         error: false
