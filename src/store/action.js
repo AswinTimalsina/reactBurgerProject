@@ -1,0 +1,2 @@
+export const LESSHANDLER = 'LESSHANDLER';
+export const MOREHANDLER = 'MOREHANDLER';
