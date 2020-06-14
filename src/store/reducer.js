@@ -1,11 +1,16 @@
 import * as actionTypes from './action';
 
-const initialState ={
-    ingredients: null
+const initialState = {
+    ingredients: {
+        salad: 0,
+        bacon: 0,
+        cheese: 0,
+        meat: 0
+    },
+    totalPrice: 4 
 }
 
 const reducer = (state=initialState, action) => {
-    
         switch (action.type){
             case actionTypes.LESSHANDLER:
                 return{
@@ -24,11 +29,9 @@ const reducer = (state=initialState, action) => {
                         [action.ingredientName]: state.ingredients[action.ingredientName] + 1
                     }
 
-                }
-
-            default:
-                return state;
+                } 
         }
+        return state;
         
     
 }

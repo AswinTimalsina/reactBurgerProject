@@ -26,13 +26,13 @@ class BurgerBuilder extends Component{
         error: false
     }
 
-    componentDidMount(){
-        console.log(this.props);
-        // axios.get('https://react-burger-app-3e7e3.firebaseio.com/ingredients.json')
-        // .then(response=>{
-        //     this.setState({ingredients : response.data})
-        // }).catch(error=>{this.setState({error:true})})
-    }
+    // componentDidMount(){
+    //     console.log(this.props);
+    //     // axios.get('https://react-burger-app-3e7e3.firebaseio.com/ingredients.json')
+    //     // .then(response=>{
+    //     //     this.setState({ingredients : response.data})
+    //     // }).catch(error=>{this.setState({error:true})})
+    // }
 
     orderButtonHandler = (ingreCopy) =>{   
         // let ingreCopy = {...this.state.ingredients}; 
@@ -195,3 +195,4 @@ return{
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
+// export default withErrorHandler(BurgerBuilder, axios);
