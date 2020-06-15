@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 class BurgerBuilder extends Component{
     state= {
-        orderSum: true,
+        // orderSum: true,
         modalShow: false,
         loading: false,
         error: false
@@ -36,7 +36,7 @@ class BurgerBuilder extends Component{
             return init+el;
         },0)
 
-        this.setState({orderSum: sum<=0})
+        return sum <= 0;
     }
 
     // moreHandler = (type) =>{
@@ -144,7 +144,7 @@ class BurgerBuilder extends Component{
                      More={this.props.moreHandler} 
                      disabled={disabledInfo} 
                      totalPrice={this.props.price} 
-                     orderButton={this.state.orderSum} 
+                     orderButton={this.orderButtonHandler(this.props.ings)} 
                      modalShow={this.showModalHandler}/>
 
             </Aux>)
