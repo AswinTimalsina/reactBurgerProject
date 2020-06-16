@@ -5,9 +5,15 @@ const input = (props) => {
 
     let formInput = null;
 
+    let inputClasses = [classes.InputElement];
+
+    if(props.validation && props.invalid){
+        inputClasses.push(classes.Invalid);
+    }
+
     switch (props.elementType) {
         case 'input':
-            formInput = <input onChange={props.changed} className={classes.InputElement}  {...props.elementConfig}/>
+            formInput = <input onChange={props.changed} className={inputClasses.join(' ')}  {...props.elementConfig}/>
             break;
         case 'textarea':
             formInput = <textarea onChange={props.changed} className={classes.InputElement} {...props.elementConfig}/>

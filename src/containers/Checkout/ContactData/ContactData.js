@@ -162,6 +162,8 @@ let form = (
             elementType={formElement.config.elementType} 
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            validation={formElement.config.validation}
             changed={(event)=>this.changeHandler(event, formElement.id)}
             /> 
         ))}               
