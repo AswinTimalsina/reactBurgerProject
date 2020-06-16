@@ -8,15 +8,56 @@ import Button from '../../../components/UI/Button/Button';
 
 class ContactData extends Component{
 state={
-    ingredients: '',
-    name: '',
-    email: '',
-    address:{
-        street:'',
-        city: '',
-        postal:''
+    orderForm:{
+        name: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Your Name'
+            },
+            value: ''
+        },
+        email: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'email',
+                placeholder: 'Your Email'
+            },
+            value: ''
+        },
+        street: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Street'
+            },
+            value: ''
+        },
+        zipCode: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'number',
+                placeholder: 'Zip Code'
+            },
+            value: ''
+        },
+        country: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Country'
+            },
+            value: ''
+        },
+        deliveryMethod: {
+            elementType: 'select',
+            elementConfig: {
+                options: [{value: 'fastest', displayValue: 'Fastest'},
+                {value:'cheapest', displayValue: 'Cheapest'}]
+            },
+            value: ''
+        }
     },
-    phoneNum: 0,
     loading: false
 }
 
@@ -51,17 +92,27 @@ orderHandler=()=>{
 }
 
 render(){
+
+let dummyForm = [];
+
+for(let key in this.state.orderForm){
+    dummyForm.push({
+        id: key,
+        config: this.state.orderForm[key]
+    })
+}
+
 let form = (
 
-    <form style={{width: '100%'}}>
-        <Input inputtype='input' type='text' placeholder="Your Name" value={this.state.name} onChange={(event)=>this.setState({name:event.target.value})} />
-        
-        <Input inputtype='input' type='email' placeholder="Your Email" value={this.state.email} onChange={(event)=>this.setState({email:event.target.value})} />
-     
-        <Input inputtype='input' type='text' placeholder="Street Address" value={this.state.address.street} onChange={(event)=>this.setState({address:{street:event.target.value}})} />
-              
-       <Input inputtype='input' type='text' placeholder="Postal Code" value={this.state.address.postal} onChange={(event)=>this.setState({address:{postal:event.target.value}})} />
-               
+    <form style={{width: '100%'}}>        
+        {dummyForm.map(formElement=>(
+            <Input 
+            key={formElement.id}
+            elementType={formElement.config.elementType} 
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            /> 
+        ))}               
         <Button btnType='Success' onClick={this.orderHandler}>Submit</Button>
         </form>
 )
