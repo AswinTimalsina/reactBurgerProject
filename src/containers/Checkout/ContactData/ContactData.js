@@ -68,12 +68,13 @@ orderHandler=()=>{
             ingredients : this.props.ings,
             price: +this.props.price,
             customer: {
-                name: this.state.name,
-                address: this.state.address,
-                email: this.state.email,
+                name: this.state.orderForm.name.value,
+                address: this.state.orderForm.street.value,
+                email: this.state.orderForm.email.value,
+                zipcode: this.state.orderForm.zipCode.value,
+                country: this.state.orderForm.country.value
             },
-            phoneNum: +this.state.phoneNum,
-            deliveryMethod: 'fastest'
+            deliveryMethod: this.state.orderForm.deliveryMethod.value
 
         }
 
@@ -89,6 +90,16 @@ orderHandler=()=>{
             console.log(error)
             this.setState({loading: false})
         })
+}
+
+
+changeHandler= (event, identifier)=>{
+    const updatedOrderForm = {...this.state.orderForm};
+    const updatedFormElement = {...updatedOrderForm[identifier]};
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[identifier] = updatedFormElement;
+
+    this.setState({orderForm: updatedOrderForm})
 }
 
 render(){
@@ -111,6 +122,7 @@ let form = (
             elementType={formElement.config.elementType} 
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            changed={(event)=>this.changeHandler(event, formElement.id)}
             /> 
         ))}               
         <Button btnType='Success' onClick={this.orderHandler}>Submit</Button>
