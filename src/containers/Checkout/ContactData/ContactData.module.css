@@ -1,4 +1,4 @@
-.form input{
+/* .form input{
     width: 80%;
     margin: auto;
     font: inherit;
@@ -6,7 +6,7 @@
     outline: none;
     margin-top: 10px;
     
-}
+} */
 
 .form{
     width: 80%;
@@ -19,7 +19,7 @@
     align-items: center;
 }
 
-.form button{
+/* .form button{
     
     display: block;
     margin:20px auto;
@@ -29,6 +29,6 @@
     cursor: pointer;
     border: 1px solid #fa923f;
     background: transparent;
-}
+} */
 
 
