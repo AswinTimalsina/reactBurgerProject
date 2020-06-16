@@ -17,9 +17,11 @@ state={
             },
             value: '',
             validation:{
-                required: true
+                required: true,
+                minLength: 3
             },
-            valid: false
+            valid: false,
+            touched: false
         },
         email: {
             elementType: 'input',
@@ -29,9 +31,11 @@ state={
             },
             value: '',
             validation:{
-                required: true
+                required: true,
+                minLength: 3
             },
-            valid: false
+            valid: false,
+            touched: false
         },
         street: {
             elementType: 'input',
@@ -41,9 +45,11 @@ state={
             },
             value: '',
             validation:{
-                required: true
+                required: true,
+                minLength: 3
             },
-            valid: false
+            valid: false,
+            touched: false
         },
         zipCode: {
             elementType: 'input',
@@ -57,7 +63,8 @@ state={
                 minLength: 3,
                 maxLength: 5
             },
-            valid: false
+            valid: false,
+            touched: false
         },
         country: {
             elementType: 'input',
@@ -67,9 +74,11 @@ state={
             },
             value: '',
             validation:{
-                required: true
+                required: true,
+                minLength: 3
             },
-            valid: false
+            valid: false,
+            touched: false
         },
         deliveryMethod: {
             elementType: 'select',
@@ -77,10 +86,15 @@ state={
                 options: [{value: 'fastest', displayValue: 'Fastest'},
                 {value:'cheapest', displayValue: 'Cheapest'}]
             },
-            value: ''
+            value: 'fastest',
+            validation:{
+                required: false
+            },
+            valid: true
         }
     },
-    loading: false
+    loading: false,
+    isFormValid: false
 }
 
 
@@ -137,9 +151,16 @@ changeHandler= (event, identifier)=>{
     const updatedFormElement = {...updatedOrderForm[identifier]};
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.touched = true;
     updatedOrderForm[identifier] = updatedFormElement;
+
+    let isFormValid= true;
+
+    for(let elementValid in updatedOrderForm){
+        isFormValid = updatedOrderForm[elementValid].valid && isFormValid
+    }
     // console.log(updatedFormElement)
-    this.setState({orderForm: updatedOrderForm})
+    this.setState({orderForm: updatedOrderForm, isFormValid: isFormValid})
 }
 
 render(){
@@ -159,15 +180,17 @@ let form = (
         {dummyForm.map(formElement=>(
             <Input 
             key={formElement.id}
+            valued={formElement.id}
             elementType={formElement.config.elementType} 
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
             invalid={!formElement.config.valid}
             validation={formElement.config.validation}
             changed={(event)=>this.changeHandler(event, formElement.id)}
+            touched={formElement.config.touched}
             /> 
         ))}               
-        <Button btnType='Success'>Submit</Button>
+        <Button disabled={!this.state.isFormValid} btnType='Success'>Submit</Button>
         </form>
 )
 
