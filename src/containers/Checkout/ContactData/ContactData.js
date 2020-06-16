@@ -61,24 +61,23 @@ state={
     loading: false
 }
 
-orderHandler=()=>{
-    // event.preventDefault();
+orderHandler=(event)=>{
+    event.preventDefault();
+    this.setState({loading: true})
+
+    const formData = {};
+
+    for(let elements in this.state.orderForm){
+        formData[elements] = this.state.orderForm[elements].value
+    }
 
     const order = {
             ingredients : this.props.ings,
             price: +this.props.price,
-            customer: {
-                name: this.state.orderForm.name.value,
-                address: this.state.orderForm.street.value,
-                email: this.state.orderForm.email.value,
-                zipcode: this.state.orderForm.zipCode.value,
-                country: this.state.orderForm.country.value
-            },
-            deliveryMethod: this.state.orderForm.deliveryMethod.value
-
+            orderData: formData
         }
 
-        this.setState({loading: true})
+        
         axios.post('/orders.json', order)
         .then(response=>{
             console.log(response)
@@ -115,7 +114,7 @@ for(let key in this.state.orderForm){
 
 let form = (
 
-    <form style={{width: '100%'}}>        
+    <form style={{width: '100%'}} onSubmit={this.orderHandler}>        
         {dummyForm.map(formElement=>(
             <Input 
             key={formElement.id}
@@ -125,7 +124,7 @@ let form = (
             changed={(event)=>this.changeHandler(event, formElement.id)}
             /> 
         ))}               
-        <Button btnType='Success' onClick={this.orderHandler}>Submit</Button>
+        <Button btnType='Success'>Submit</Button>
         </form>
 )
 
