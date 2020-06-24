@@ -21,6 +21,7 @@ class BurgerBuilder extends Component{
 
     componentDidMount(){
         console.log(this.props);
+        this.props.onInitIngredients();
     }
 
     orderButtonHandler = (ingreCopy) =>{   
@@ -128,7 +129,7 @@ class BurgerBuilder extends Component{
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
 
-        let burger = this.state.error ? <p style={{textAlign: 'center'}}>Cannot fetch the ingredients!</p> : <Spinner/>
+        let burger = this.props.error ? <p style={{textAlign: 'center'}}>Cannot fetch the ingredients!</p> : <Spinner/>
 
         if(this.props.ings){
             burger =(<Aux>
@@ -175,14 +176,16 @@ class BurgerBuilder extends Component{
 const mapStateToProps = state => {
     return {
         ings: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         moreHandler: (ingName) => dispatch(actionCreators.addIngredient(ingName)),
-        lessHandler: (ingName) => dispatch(actionCreators.removeIngredient(ingName))
+        lessHandler: (ingName) => dispatch(actionCreators.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(actionCreators.initIngredients())
     }
 }
 
