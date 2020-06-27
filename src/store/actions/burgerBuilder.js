@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
+import {updateObject} from '../utility';
 
 export const addIngredient = (ingName) => {
     return{
