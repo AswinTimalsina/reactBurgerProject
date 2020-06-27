@@ -10,5 +10,7 @@ export {
 } from './actions/burgerBuilder'
 
 export{
-    purchaseBurgerStart
+    purchaseBurger,
+    purchaseInit,
+    fetchOrders
 } from './actions/order'

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import classes from './ContactData.module.css';
-// import axios from '../../../axios-orders';
+import axios from '../../../axios-orders';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import {connect} from 'react-redux';
 import Input from '../../../components/UI/Input/Input';
@@ -94,7 +95,6 @@ state={
             valid: true
         }
     },
-    loading: false,
     isFormValid: false
 }
 
@@ -131,7 +131,7 @@ orderHandler=(event)=>{
             orderData: formData
         }
 
-    this.props.purchaseBurgerStart(order);
+    this.props.purchaseBurger(order);
         
         
 }
@@ -185,7 +185,7 @@ let form = (
         </form>
 )
 
-if (this.state.loading){
+if (this.props.loading){
     form = <Spinner />
 }
 
@@ -201,15 +201,16 @@ return(
 
 const mapStateToProps = state => {
     return{
-        ings: state.ingredients,
-        price: state.totalPrice
+        ings: state.burg.ingredients,
+        price: state.burg.totalPrice,
+        loading: state.ord.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        purchaseBurgerStart: (orderData) => dispatch(actionCreators.purchaseBurgerStart(orderData))
+        purchaseBurger: (orderData) => dispatch(actionCreators.purchaseBurger(orderData))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactData);
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));

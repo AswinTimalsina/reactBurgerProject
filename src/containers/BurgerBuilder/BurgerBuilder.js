@@ -7,7 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../store/index';
+import * as actions from '../../store/index';
 import axios from '../../axios-orders';
 
 
@@ -117,7 +117,8 @@ class BurgerBuilder extends Component{
         //     search: '?'+queryString
 
         // })
-        this.props.history.push('/checkout')
+        this.props.onInitPurchase();
+        this.props.history.push('/checkout');
     }
 
     render(){
@@ -152,8 +153,8 @@ class BurgerBuilder extends Component{
         total={this.props.price}/>
         }
 
-        if(this.state.loading){
-            orderSummary = <Spinner /> }
+        // if(this.props.loading){
+        //     orderSummary = <Spinner /> }
 
         return(
             <Aux>
@@ -175,17 +176,19 @@ class BurgerBuilder extends Component{
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price: state.totalPrice,
-        error: state.error
+        ings: state.burg.ingredients,
+        price: state.burg.totalPrice,
+        error: state.burg.error,
+        loading: state.burg.loading
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        moreHandler: (ingName) => dispatch(actionCreators.addIngredient(ingName)),
-        lessHandler: (ingName) => dispatch(actionCreators.removeIngredient(ingName)),
-        onInitIngredients: () => dispatch(actionCreators.initIngredients())
+        moreHandler: (ingName) => dispatch(actions.addIngredient(ingName)),
+        lessHandler: (ingName) => dispatch(actions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(actions.initIngredients()),
+        onInitPurchase: () => dispatch(actions.purchaseInit())
     }
 }
 
