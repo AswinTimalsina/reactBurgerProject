@@ -155,7 +155,7 @@ class BurgerBuilder extends Component{
 
         // if(this.props.loading){
         //     orderSummary = <Spinner /> }
-
+                                                                                                                    
         return(
             <Aux>
                 <Modal 
