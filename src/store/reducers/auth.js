@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 import {updateObject} from '../utility';
-import { ReactReduxContext } from 'react-redux';
+import { authLogout } from '../actions/auth';
+// import { ReactReduxContext } from 'react-redux';
 
 const initialState = {
     token: null,
@@ -21,6 +22,10 @@ const authFail = (state, action) => {
     return updateObject(state, {error: action.error, loading:false});
 }
 
+const authenLogout = (state, action) => {
+    return updateObject(state, {token: null, userId: null});
+}
+
 const reducer = (state=initialState, action) => {
     switch(action.type){
         case actionTypes.AUTH_START:
@@ -31,6 +36,9 @@ const reducer = (state=initialState, action) => {
 
         case actionTypes.AUTH_FAIL:
             return authFail(state, action);
+
+        case actionTypes.AUTH_LOGOUT:
+            return authenLogout(state, action);
 
         default:
             return state;
