@@ -131,7 +131,7 @@ orderHandler=(event)=>{
             orderData: formData
         }
 
-    this.props.purchaseBurger(order);
+    this.props.purchaseBurger(order, this.props.token);
         
         
 }
@@ -203,13 +203,14 @@ const mapStateToProps = state => {
     return{
         ings: state.burg.ingredients,
         price: state.burg.totalPrice,
-        loading: state.ord.loading
+        loading: state.ord.loading,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        purchaseBurger: (orderData) => dispatch(actionCreators.purchaseBurger(orderData))
+        purchaseBurger: (orderData, token) => dispatch(actionCreators.purchaseBurger(orderData, token))
     }
 }
 

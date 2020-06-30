@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import {updateObject} from '../utility';
-import { authLogout } from '../actions/auth';
 // import { ReactReduxContext } from 'react-redux';
 
 const initialState = {
