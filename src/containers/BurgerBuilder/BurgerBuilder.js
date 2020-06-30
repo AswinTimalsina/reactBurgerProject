@@ -66,7 +66,11 @@ class BurgerBuilder extends Component{
     // }
 
     showModalHandler =()=>{
-        this.setState({modalShow: true})
+        if(this.props.isAuthenticated){
+        this.setState({modalShow: true})}
+        else{
+            this.props.history.push('/authenticate');
+        }
     }
 
     removeModalHandler =() =>{
@@ -142,7 +146,9 @@ class BurgerBuilder extends Component{
                      disabled={disabledInfo} 
                      totalPrice={this.props.price} 
                      orderButton={this.orderButtonHandler(this.props.ings)} 
-                     modalShow={this.showModalHandler}/>
+                     modalShow={this.showModalHandler}
+                     isAuthenticated={this.props.isAuthenticated}
+                     />
 
             </Aux>)
         
@@ -179,7 +185,8 @@ const mapStateToProps = state => {
         ings: state.burg.ingredients,
         price: state.burg.totalPrice,
         error: state.burg.error,
-        loading: state.burg.loading
+        loading: state.burg.loading,
+        isAuthenticated: state.auth.token
     };
 }
 
