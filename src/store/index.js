@@ -1,5 +1,6 @@
 export {
-    auth
+    auth,
+    authLogout
 } from './actions/auth';
 
 
