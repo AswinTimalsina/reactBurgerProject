@@ -1,6 +1,7 @@
 export {
     auth,
-    authLogout
+    authLogout,
+    setAuthRedirectPath
 } from './actions/auth';
 
 
