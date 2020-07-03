@@ -64,12 +64,14 @@ export const fetchOrdersStart = () => {
     }
 }
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
 
         dispatch(fetchOrdersStart())
 
-        axios.get('https://react-burger-app-3e7e3.firebaseio.com/orders.json?auth=aIrNM8gLHmMDZp9juXI4Ghm5umBDzRXa4JNGf5tX').then(res=>{
+        const queryParams = '?auth=aIrNM8gLHmMDZp9juXI4Ghm5umBDzRXa4JNGf5tX&orderBy="userId"&equalTo="'+ userId + '"';
+
+        axios.get('https://react-burger-app-3e7e3.firebaseio.com/orders.json'+queryParams).then(res=>{
             let orderData = [];
             for(let key in res.data){
                 orderData.push({
